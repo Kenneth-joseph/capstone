@@ -8,13 +8,14 @@
 
 </head>
 <body>
-    <form action="postsign" method="POST">
+    <form action="/postsign/" method="POST">
+        {% csrf_token %}
         email:
         <input type="email" name="email">
         password:
         <input type='password' name="pass">
         <input type="submit" value="sign">
-        
+
     </form>
 
 </body>
