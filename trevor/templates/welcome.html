@@ -5,11 +5,25 @@
 
 
     <title> sign in </title>
+    <style>
+    div{        position : absolute;
+        right : 10px;
+        top : 5px
+        }
+
+    </style>
 
 </head>
 <body>
         
     <h1>waassup {{email}}</h1>
+    <div>
+        <!-- change href -->
+    <button type="button" onclick="location.href='{% url 'logout'%}'">logout</button>
+    
+</div>
 
 </body>
+
+
 </html>
