@@ -16,7 +16,9 @@
 </head>
 <body>
         
-    <h1>waassup {{email}}</h1>
+    <h1>waassup {{email}}</h1><br><br>
+    <button type="button"  onclick="location.href='{% url 'create'%}'">create a report</button>
+    <button type="button">check a report</button>
     <div>
         <!-- change href -->
     <button type="button" onclick="location.href='{% url 'logout'%}'">logout</button>

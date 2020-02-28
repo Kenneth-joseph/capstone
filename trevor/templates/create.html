@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+
+    <title> create report </title>
+    <style>
+        div {
+            position: absolute;
+            right: 10px;
+            top: 5px
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div>
+        <!-- change href -->
+        <button type="button" onclick="location.href='{% url 'logout'%}'">logout</button>
+
+    </div>
+    <h2>create daily progress</h2>
+    <form action="/postcreate/" method="POST">
+        {% csrf_token %}
+        work assigned:
+        <input type="text" name="work"><br><br>
+        progress:
+        <textarea rows="5" cols="40" name="progress"></textarea>
+        <br><br>
+
+        <input type="submit" value="submit"><br><br>
+
+
+    </form>
+
+</body>
+
+</html>

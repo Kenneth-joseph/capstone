@@ -2,6 +2,10 @@ from django.shortcuts import render,redirect
 import pyrebase
 from django.contrib import auth
 
+import time
+from datetime import datetime,timezone
+import pytz
+
 config={
 "apiKey": "AIzaSyBBc9k7-hPr8v_a0G9vdcK73CdcWD133vs",
     "authDomain": "capstone-713b5.firebaseapp.com",
@@ -65,3 +69,34 @@ def postsignup(request):
     database.child('users').child(uid).child('details').set(data)# create constructor called child which enables many users to be entered and it collects the uid and details
 
     return render(request,'signin.html')
+
+def create(request):
+
+    return render(request,'create.html')
+
+def postcreate(request):
+    # import time
+    # from datetime import datetime,timezone
+    # import pytz
+    tz=pytz.timezone('Africa/Nairobi')
+    time_now=datetime.now(timezone.utc).astimezone(tz)#converts utc time right now to the timezone you are in
+    millis=int(time.mktime(time_now.timetuple()))#converts time in miliseconds
+    print('mili'+str(millis))
+    work=request.POST.get('work')
+    progress=request.POST.get('progress')
+
+
+    idtoken=request.session['uid']
+    a=authe.get_account_info(idtoken)
+    a=a['users']
+    a=a[0]
+    a=a['localId']
+    print('info'+str(a)),
+    data = {
+        'work':work,
+        'progress':progress
+            }
+    database.child('users').child(a).child('reports').child(millis).set(data)
+    name = database.child('users').child(a).child('details').child('name').get().val()
+
+    return render (request,'welcome.html',{'email':name})
